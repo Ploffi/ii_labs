@@ -5,5 +5,5 @@ class Node
 {
 	public string FactorName;
 	public Result Result;
-	public List<(string factorValue, Node child)> Childrens;
+	public List<(string factorValue, string factorName, Node child)> Childrens;
 }

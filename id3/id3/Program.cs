@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace id3
 {
@@ -10,6 +6,15 @@ namespace id3
 	{
 		static void Main(string[] args)
 		{
+			var reader = new Reader();
+			var trainData = reader.Read("train.csv");
+			var decisionsTree = new ID3(trainData, "Decision");
+			var checkData = reader.Read("check.csv");
+			foreach (var checkCase in checkData)
+			{
+				Console.WriteLine(checkCase);
+				Console.WriteLine(decisionsTree.GetResult(checkCase));
+			}
 		}
 	}
 }

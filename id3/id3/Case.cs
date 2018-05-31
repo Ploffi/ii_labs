@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace id3
 {
@@ -9,6 +10,11 @@ namespace id3
 		public Case(Dictionary<string, string> factors)
 		{
 			Factors = factors;
+		}
+
+		public override string ToString()
+		{
+			return string.Join(",", Factors.Select(k => $"{k.Key}={k.Value}"));
 		}
 	}
 }

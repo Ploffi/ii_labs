@@ -50,14 +50,22 @@
   <ItemGroup>
     <Compile Include="Extensions.cs" />
     <Compile Include="ID3.cs" />
+    <Compile Include="ID3Builder.cs" />
+    <Compile Include="Reader.cs" />
     <Compile Include="Tests\ID3Tests.cs" />
-    <Compile Include="TrainingSet.cs" />
+    <Compile Include="Case.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tree.cs" />
+    <Compile Include="Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="check.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="train.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

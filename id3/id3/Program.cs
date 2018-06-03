@@ -10,6 +10,10 @@ namespace id3
 			var trainData = reader.Read("train.csv");
 			var decisionsTree = new ID3(trainData, "Decision");
 			var checkData = reader.Read("check.csv");
+
+			Console.WriteLine();
+			Console.WriteLine();
+
 			foreach (var checkCase in checkData)
 			{
 				Console.WriteLine(checkCase);

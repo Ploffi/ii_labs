@@ -41,6 +41,7 @@ namespace id3
 		{
 			var factors = _valuesOfFactors.Keys.Where(factor => factor != _decisionFactor).ToList();
 			var targetFactor = GetBestFactor(_allCases, factors);
+			Console.WriteLine($"BestFactor is {targetFactor}");
 			return Build(_allCases, factors.Where(factor => factor != targetFactor).ToList(), targetFactor);
 		}
 
@@ -64,6 +65,7 @@ namespace id3
 				var appendingNode = (targetFactorValue, factorName: (string)null, node: new Node());
 				if (SetSingleRootIfPossible(appendingNode.node, casesWithCurrentValue))
 				{
+					Console.WriteLine($"all cases have result {appendingNode.node.Result} for factorValue: {appendingNode.Item1}");
 					node.Childrens.Add(
 						appendingNode
 					);
@@ -84,6 +86,7 @@ namespace id3
 					appendingNode.node.Result = result;
 				}
 
+				Console.WriteLine($"target factor {appendingNode.factorName} for factorValue: {appendingNode.Item1}");
 				node.Childrens.Add(
 					appendingNode
 				);
@@ -92,17 +95,19 @@ namespace id3
 			return node;
 		}
 
-		private string GetBestFactor(List<Case> cases, IEnumerable<string> factors)
+		private string GetBestFactor(List<Case> cases, IReadOnlyList<string> factors)
 		{
-			return factors.ElementWithMaxCost(otherProperty => CalculateGain(cases, otherProperty));
+			var bestFactor = factors.ElementWithMaxCost(otherProperty => CalculateGain(cases, otherProperty));
+			return bestFactor;
 		}
 
 		private double CalculateGain(List<Case> cases, string calculatingProperty)
 		{
 			var summedEntropyForProperty = _valuesOfFactors[calculatingProperty].Sum(v => CalculateGainForPropertyValue(v));
 			var entropy = CalculateEntropy(cases);
-
-			return entropy - summedEntropyForProperty;
+			var gain = entropy - summedEntropyForProperty;
+			Console.WriteLine($"gain for property {calculatingProperty}: {gain:F4}");
+			return gain;
 
 			double CalculateGainForPropertyValue(string calculatingPropertyValue)
 			{

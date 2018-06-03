@@ -1,3 +1,5 @@
 .idea
-PerceptronApp/bin
-PerceptronApp/obj
+bin
+obj
+.vs
+/dynamic/Dynamic/packages

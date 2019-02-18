@@ -9,12 +9,9 @@ namespace ConsoleApplication1.SerializerProblem
 
         public string Serialize<T>(T value)
         {
-            var serialized = _serializer.SerializeToXml(value);
-            var cleaned = Regex.Replace(serialized, @"<Output(.*?)>", "<Output>");
-            return cleaned
-                .Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
+            return _serializer.SerializeToXml(value)
                 .Replace("\n", "")
-                .Replace(" ", "");
+                .Trim();
         }
 
         public T Deserialize<T>(string value)

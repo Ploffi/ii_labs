@@ -7,22 +7,9 @@ namespace ConsoleApplication1
     {
         public static void Main(string[] args)
         {
-            var consoleProvider = new ConsoleProvider();
-            var serializeSolver = new SerializeSolver();
-            serializeSolver.Resolve(consoleProvider);
-        } 
-        
-        class ConsoleProvider: IMessageProvider
-        {
-            public string Read()
-            {
-                return Console.ReadLine();
-            }
+            var str = "Hello world!";
 
-            public void Write(string output)
-            {
-                Console.WriteLine(output);
-            }
+            str = 10;
         }
     }
 }
